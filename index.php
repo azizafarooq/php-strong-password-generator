@@ -1,32 +1,6 @@
-<?php
+<?php require __DIR__ . '/./config/partials/functions.php'; 
 // ricevo il valore della lunghezza della password
-$password_length = $_GET['length'];
-
-$upper_case = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-$lower_case = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-$numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-$symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/'];
-
-// unisco gli arrays in un solo array
-$available_elements = array_merge($upper_case, $lower_case, $numbers, $symbols);
-
-// creo la funzione per generare una stringa casuale
-function generate_password($available_elements, $password_length){
-
-    // inizializzo l'elemento in cui salvare gli elementi randomici
-    $random_password='';
-
-    // uso il ciclo for per generare elementi ranomici e aggiungerli a random_password
-    for ($i = 0; $i < $password_length; $i++) {
-        $random_element = array_rand($available_elements);
-        $random_password .= $random_element;
-    }
-
-    // prendo la password generata
-    return $random_password;
-}
-echo generate_password($available_elements, $password_length);
-?>
+$password_length = $_GET['length']; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,19 +19,19 @@ echo generate_password($available_elements, $password_length);
         <h1>Strong Password Generator</h1>
 
         <!-- Creo il from -->
-        <form class="mt-5" method="get">
+        <form class="mt-5" method="get" action="./config/partials/functions.php">
             <label for="length">Lunghezza</label>
             <input type="number" id="length" name="length" autofocus class="mx-3">
             <button type="submit" class="btn btn-success">Success</button>
         </form>
 
         <!-- Genero la password se ricevo un valore e se è maggiore di 0 -->
-        <?php if (!empty($password_length) && ($password_length > 0)) {
-            // generate_password($password_length);
-            echo "Ecco la tua password";
-        } else {
-            echo "Inserisci un numero valido";
-        }; ?>
+        <?php if (!empty($password_length) && ($password_length > 0)) {?>  
+        <h3 class="mt-5">Your Safe Password: </h3>
+        <?php echo generate_password($available_elements, $password_length); 
+        } else { ?>
+        <h5 class="mt-5">Inserisci un numero valido</h5> <?php
+        };?>
 
     </div>
 </body>
