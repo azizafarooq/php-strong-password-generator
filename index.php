@@ -1,6 +1,5 @@
 <?php
 $password_length = $_GET['length'];
-var_dump($password_length);
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +22,13 @@ var_dump($password_length);
             <input type="number" id="length" name="length" autofocus class="mx-3">
             <button type="submit" class="btn btn-success">Success</button>
         </form>
+        <?php if (!empty($password_length) && ($password_length > 0)) {
+            // generate_password($password_length);
+            echo "Ecco la tua password";
+        } else {
+            echo "Inserisci un numero valido";
+        }; ?>
+
     </div>
 </body>
 
