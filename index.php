@@ -1,6 +1,19 @@
-<?php require __DIR__ . '/./config/partials/functions.php'; 
+<?php require_once  __DIR__ . '/partials/functions.php'; 
 // ricevo il valore della lunghezza della password
-$password_length = $_GET['length']; ?>
+$form_sent = !empty($_GET);
+
+if ($form_sent){
+    $password_length = $_GET['length']; 
+}
+
+// dati
+$upper_case = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+$lower_case = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+$numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+$symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/'];
+// unisco gli arrays in un solo array
+$available_elements = array_merge($upper_case, $lower_case, $numbers, $symbols);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +32,7 @@ $password_length = $_GET['length']; ?>
         <h1>Strong Password Generator</h1>
 
         <!-- Creo il from -->
-        <form class="mt-5" method="get" action="./config/partials/functions.php">
+        <form class="mt-5" method="get" >
             <label for="length">Lunghezza</label>
             <input type="number" id="length" name="length" autofocus class="mx-3">
             <button type="submit" class="btn btn-success">Success</button>

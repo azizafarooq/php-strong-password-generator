@@ -1,11 +1,6 @@
 <?php 
-
-require_once __DIR__ . '/./main.php';
-
 // creo la funzione per generare una stringa casuale
 function generate_password($available_elements, $password_length){
-    // unisco gli arrays in un solo array
-    $available_elements = array_merge($upper_case, $lower_case, $numbers, $symbols);
 
     // inizializzo l'elemento in cui salvare gli elementi randomici
     $random_password='';
@@ -19,3 +14,4 @@ function generate_password($available_elements, $password_length){
     // prendo la password generata
     return $random_password;
 }
+?>
